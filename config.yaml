@@ -1,0 +1,26 @@
+#workdir: ""
+run_type: "contig"
+genome_type: "meta"
+protein_search_type: "frag"
+filter: 0
+contig_suffix: "fa"
+protein_file: "contig_prodigal"
+hmm_file: "/Yol_Data/resources/my_hmm_profiles/cas12o.5_cas12h.2_Cas12ibj.hmm"
+base: ""
+run_fastp: False
+run_cctyper: True
+scripts:
+  get_sample_name: "/Yol_Data/GSA/workflow/get_sample_name.sh"
+  get_suffix: "/Yol_Data/GSA/workflow/get_suffix.sh"
+  process_per_seq: "/Yol_Data/GSA/workflow/process_per_seq.sh"
+megahit:
+  presets: "meta-sensitive"
+  mincount: "1"
+  k-list: "21,25,29,39,49,59,69,79,89,99,109,119,129,141"
+  threads: 250
+params:
+  cutoff: 50
+hmmsearch_cut_command: "-E 1e-20"
+#hmmsearch_cut_command: "--cut_ga"
+envs:
+  cctyper: "/Yol_Data/GSA/workflow/envs/cctyper.yaml"
